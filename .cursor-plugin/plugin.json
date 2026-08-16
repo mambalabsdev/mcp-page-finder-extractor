@@ -1,0 +1,31 @@
+{
+  "name": "mcp-page-finder-extractor",
+  "displayName": "Page Finder and Extractor",
+  "version": "1.0.0",
+  "description": "MCP server for the Mamba Labs Page Finder and Extractor actor on Apify. Company domain in, the named page type located on that company's own website out, with the method that found it and a confidence for that method.",
+  "author": {
+    "name": "Mamba Labs",
+    "email": "labs@mambamindsetgrowth.com"
+  },
+  "homepage": "https://mambabuilt.com",
+  "repository": "https://github.com/mambalabsdev/mcp-page-finder-extractor",
+  "license": "MIT",
+  "logo": "https://mmg-brand-assets.netlify.app/apify-actor-pngs/apify_webhook.png",
+  "category": "productivity",
+  "tags": [
+    "mcp",
+    "page-discovery",
+    "website-intelligence",
+    "apify",
+    "clay"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "page-discovery",
+    "website-intelligence",
+    "apify",
+    "clay"
+  ],
+  "mcpServers": ".mcp.json"
+}

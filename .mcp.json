@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "mamba-page-finder-extractor": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mambalabsdev/mcp-page-finder-extractor"
+      ],
+      "env": {
+        "APIFY_TOKEN": "your-apify-token"
+      }
+    }
+  }
+}

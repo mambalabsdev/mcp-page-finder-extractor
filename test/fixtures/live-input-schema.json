@@ -1,0 +1,288 @@
+{
+  "_provenance": {
+    "source": "GET https://api.apify.com/v2/actor-builds/Blw3MToaobA1Vqh2P",
+    "actorId": "TpurgcOZbVnknlaiC",
+    "buildNumber": "0.0.8",
+    "buildId": "Blw3MToaobA1Vqh2P",
+    "copiedAt": "2026-08-16",
+    "note": "Copied verbatim from the live build record. Regenerate with scripts/sync-input-schema-fixture.mjs. Never hand edit, and never derive it from src/index.ts, which is the thing it exists to check."
+  },
+  "schema": {
+    "title": "Page Finder and Extractor",
+    "description": "Give it a company domain or a company name. It finds the page type you name on that company's own website, and when you ask, pulls structured data off it. 46 page types, discovery vocabulary in 11 languages, one flat row per input every time.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+      "domain": {
+        "title": "Company domain",
+        "type": "string",
+        "description": "A single company domain, for example stripe.com. Protocol and path are stripped. Use this for one company; use Company domains for a list.",
+        "editor": "textfield",
+        "prefill": "stripe.com",
+        "example": "stripe.com"
+      },
+      "domains": {
+        "title": "Company domains",
+        "type": "array",
+        "description": "A list of company domains. Every domain returns a row, including the ones where nothing is found.",
+        "editor": "stringList",
+        "prefill": [
+          "stripe.com"
+        ],
+        "example": [
+          "stripe.com",
+          "vercel.com"
+        ]
+      },
+      "companies": {
+        "title": "Companies by name",
+        "type": "array",
+        "description": "Companies you have a name for but not a domain. Each entry is an object with name, and optionally country, isin, ticker and url. Identity resolution runs first on this path and is charged as its own event. Send as JSON when calling from Clay.",
+        "editor": "json",
+        "example": [
+          {
+            "name": "Wartsila",
+            "country": "FI"
+          }
+        ]
+      },
+      "pageTypes": {
+        "title": "Page types to find",
+        "type": "array",
+        "description": "Which page types to locate. 46 are available. Each one you add costs a locate event and takes more requests, so ask for what you will use.",
+        "editor": "select",
+        "items": {
+          "type": "string",
+          "enum": [
+            "pricing",
+            "demo_request",
+            "free_trial",
+            "procurement_vendor",
+            "about",
+            "leadership_team",
+            "locations",
+            "investor_relations",
+            "annual_report",
+            "governance",
+            "security_trust_center",
+            "compliance_certifications",
+            "privacy_policy",
+            "terms_of_service",
+            "dpa_subprocessors",
+            "accessibility_statement",
+            "status_page",
+            "careers",
+            "job_board",
+            "benefits",
+            "culture",
+            "documentation",
+            "api_reference",
+            "integrations",
+            "changelog",
+            "roadmap",
+            "developer_portal",
+            "blog",
+            "press_newsroom",
+            "case_studies",
+            "customers_logos",
+            "resources_library",
+            "events_webinars",
+            "podcast",
+            "media_kit",
+            "partners",
+            "reseller_channel",
+            "affiliate_program",
+            "marketplace_listing",
+            "community",
+            "contact",
+            "support_help_center",
+            "login_app",
+            "sustainability_esg",
+            "diversity_programs",
+            "giving_volunteering"
+          ]
+        },
+        "default": [
+          "pricing"
+        ],
+        "prefill": [
+          "pricing"
+        ],
+        "example": [
+          "pricing",
+          "security_trust_center"
+        ]
+      },
+      "mode": {
+        "title": "Mode",
+        "type": "string",
+        "description": "locate returns the page URL, the method that found it and a confidence. locate_and_extract also reads the page and returns structured fields. Locating alone is cheaper and is a complete product on its own.",
+        "editor": "select",
+        "enum": [
+          "locate",
+          "locate_and_extract"
+        ],
+        "enumTitles": [
+          "locate, URL only",
+          "locate_and_extract, URL plus structured fields"
+        ],
+        "default": "locate",
+        "prefill": "locate"
+      },
+      "extractionFields": {
+        "title": "Fields to extract on any page",
+        "type": "array",
+        "description": "The page agnostic menu. These are available on every page type. Only used in locate_and_extract mode. Leave empty for all of them.",
+        "editor": "select",
+        "items": {
+          "type": "string",
+          "enum": [
+            "copyright",
+            "legal_entity",
+            "emails",
+            "phones",
+            "addresses",
+            "social_links",
+            "meta",
+            "last_modified",
+            "canonical",
+            "schema_org",
+            "forms",
+            "ctas",
+            "tech_markers"
+          ]
+        },
+        "default": [
+          "copyright",
+          "legal_entity",
+          "emails",
+          "phones",
+          "addresses",
+          "social_links",
+          "meta",
+          "last_modified",
+          "canonical",
+          "schema_org",
+          "forms",
+          "ctas",
+          "tech_markers"
+        ],
+        "prefill": [
+          "copyright",
+          "legal_entity",
+          "emails",
+          "phones",
+          "addresses",
+          "social_links",
+          "meta",
+          "last_modified",
+          "canonical",
+          "schema_org",
+          "forms",
+          "ctas",
+          "tech_markers"
+        ]
+      },
+      "extractPageTypeFields": {
+        "title": "Extract page type specific fields",
+        "type": "string",
+        "description": "true also runs the field map bound to each page type: pricing plans, filing rows and a derived fiscal year end, certifications, ATS host, governing law, and the rest. Only used in locate_and_extract mode.",
+        "editor": "select",
+        "enum": [
+          "true",
+          "false"
+        ],
+        "enumTitles": [
+          "true, extract page type fields",
+          "false, page agnostic fields only"
+        ],
+        "default": "true",
+        "prefill": "true"
+      },
+      "knownUrls": {
+        "title": "Known URLs",
+        "type": "object",
+        "description": "URLs you already hold, keyed by page type, for example {\"pricing\": \"https://stripe.com/pricing\"}. Discovery is skipped for that page type, which is faster and more accurate. Send as JSON when calling from Clay.",
+        "editor": "json",
+        "example": {
+          "pricing": "https://stripe.com/pricing"
+        }
+      },
+      "maxPagesPerType": {
+        "title": "Max pages per page type",
+        "type": "string",
+        "description": "Between 1 and 12. How many candidate pages to open per page type before giving up. Lowering it is faster and finds less: at 1 the actor opens only its single best candidate, so a company whose real pricing page was the second best guess comes back not found. 4 is the measured default. Sent as a string so it works from Clay.",
+        "editor": "textfield",
+        "default": "4",
+        "prefill": "4",
+        "example": "4"
+      },
+      "maxRequestsPerInput": {
+        "title": "Max requests per company",
+        "type": "string",
+        "description": "Between 5 and 200. The hard ceiling on requests to one company's site, robots.txt and sitemap included. Hitting it returns coverage partial rather than a false negative. Sent as a string so it works from Clay.",
+        "editor": "textfield",
+        "default": "60",
+        "prefill": "60",
+        "example": "60"
+      },
+      "concurrency": {
+        "title": "Companies in parallel",
+        "type": "string",
+        "description": "Between 1 and 30. How many companies to work on at once. Politeness is enforced per domain, not globally, so raising this never sends two requests to the same site at once. 10 is the default and it is what keeps the per company compute cost low enough to price. Sent as a string so it works from Clay.",
+        "editor": "textfield",
+        "default": "10",
+        "prefill": "10",
+        "example": "10"
+      },
+      "allowRender": {
+        "title": "Render JavaScript pages",
+        "type": "string",
+        "description": "true opens a browser for pages that serve no readable HTML, which is most Nordic investor calendars. It is never used to get past a block, a CAPTCHA, a login or robots.txt: those come back refused, unretried. false skips rendering entirely and those pages report javascript_only.",
+        "editor": "select",
+        "enum": [
+          "true",
+          "false"
+        ],
+        "enumTitles": [
+          "true, render when a page needs it",
+          "false, never open a browser"
+        ],
+        "default": "true",
+        "prefill": "true"
+      },
+      "languageHints": {
+        "title": "Language hints",
+        "type": "array",
+        "description": "Optional. Discovery vocabulary is multilingual by default in all 11 languages; this only reorders it so the languages you name are tried first. It never removes a language.",
+        "editor": "stringList",
+        "example": [
+          "de",
+          "fr"
+        ]
+      },
+      "skipCache": {
+        "title": "Skip the cache",
+        "type": "string",
+        "description": "false uses the 14 day cache. true forces a fresh crawl.",
+        "editor": "select",
+        "enum": [
+          "false",
+          "true"
+        ],
+        "enumTitles": [
+          "false, use the cache",
+          "true, force fresh"
+        ],
+        "default": "false",
+        "prefill": "false"
+      },
+      "source_tag": {
+        "title": "Source Tag",
+        "type": "string",
+        "description": "Internal attribution tag set by Mamba Labs on published task examples. Not required, and nothing depends on it. Leave it empty.",
+        "editor": "hidden"
+      }
+    }
+  }
+}
