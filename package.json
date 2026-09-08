@@ -12,18 +12,50 @@
     "test": "npm run build && node --test test/*.test.js",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["mcp", "model-context-protocol", "page-discovery", "website-intelligence", "apify", "clay"],
-  "tags": ["mcp", "page-discovery", "website-intelligence", "apify", "clay"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "page-discovery",
+    "website-intelligence",
+    "apify",
+    "clay"
+  ],
+  "tags": [
+    "mcp",
+    "page-discovery",
+    "website-intelligence",
+    "apify",
+    "clay"
+  ],
   "category": "productivity",
-  "author": { "name": "Mamba Labs", "email": "labs@mambamindsetgrowth.com" },
+  "author": {
+    "name": "Mamba Labs",
+    "email": "labs@mambamindsetgrowth.com"
+  },
   "license": "MIT",
   "logo": "https://mmg-brand-assets.netlify.app/apify-actor-pngs/apify_webhook.png",
   "homepage": "https://mambabuilt.com",
-  "repository": { "type": "git", "url": "https://github.com/mambalabsdev/mcp-page-finder-extractor" },
-  "engines": { "node": ">=18" },
-  "dependencies": { "@modelcontextprotocol/sdk": "^1.12.0", "zod": "^3.23.8" },
-  "devDependencies": { "@types/node": "^26.4.1", "typescript": "^5.6.0" },
-  "files": ["build", "README.md", "LICENSE", "SECURITY.md"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mambalabsdev/mcp-page-finder-extractor"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "typescript": "5.9.3"
+  },
+  "files": [
+    "build",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
   "mcpServers": ".mcp.json",
   "mcpName": "com.mambabuilt/mcp-page-finder-extractor"
 }
