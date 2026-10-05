@@ -46,10 +46,11 @@ Requires an Apify API token in `APIFY_TOKEN`. Create one at [console.apify.com/a
 | `knownUrls` | no | URLs you already hold, keyed by page type. Skips discovery for those |
 | `extractionFields` | no | The page agnostic extraction menu |
 | `extractPageTypeFields` | no | Also run the field map bound to the page type. Default `"true"` |
-| `maxPagesPerType` | no | 1 to 12, candidate pages opened per type. Default `"4"` |
-| `maxRequestsPerInput` | no | 5 to 200, ceiling on requests per company. Default `"60"` |
+| `maxPagesPerType` | no | 1 to 12, candidate pages opened per type. A number or a numeric string. Default `4` |
+| `maxRequestsPerInput` | no | 5 to 200, ceiling on requests per company. A number or a numeric string. Default `60` |
 | `allowRender` | no | Open a browser for pages that need JavaScript. Default `"true"` |
 | `languageHints` | no | Language codes to try first. Reorders vocabulary, never shortens it |
+| `concurrency` | no | How many companies to work on at once. Per company the actor still makes one request at a time with a delay. A number or a numeric string. Default `10` |
 | `skipCache` | no | `"true"` forces a fresh crawl instead of the 14 day cache |
 
 The 46 page types: `pricing`, `demo_request`, `free_trial`, `procurement_vendor`, `about`, `leadership_team`, `locations`, `investor_relations`, `annual_report`, `governance`, `security_trust_center`, `compliance_certifications`, `privacy_policy`, `terms_of_service`, `dpa_subprocessors`, `accessibility_statement`, `status_page`, `careers`, `job_board`, `benefits`, `culture`, `documentation`, `api_reference`, `integrations`, `changelog`, `roadmap`, `developer_portal`, `blog`, `press_newsroom`, `case_studies`, `customers_logos`, `resources_library`, `events_webinars`, `podcast`, `media_kit`, `partners`, `reseller_channel`, `affiliate_program`, `marketplace_listing`, `community`, `contact`, `support_help_center`, `login_app`, `sustainability_esg`, `diversity_programs`, `giving_volunteering`.

@@ -2,6 +2,7 @@ name: CI
 on:
   push:
     branches: [main]
+  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,9 +13,4 @@ jobs:
           node-version: '20'
       - run: npm ci
       - run: npm run build
-      # The fleet CI stops at build. This wrapper runs its tests too,
-      # because the parity test is the only thing standing between a
-      # schema change on the actor and a tool that silently stops
-      # exposing an input. It needs no APIFY_TOKEN: the expected list
-      # comes from a committed fixture, not from the network.
       - run: npm test
