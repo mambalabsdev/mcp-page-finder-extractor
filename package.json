@@ -1,7 +1,7 @@
 {
   "name": "@mambalabsdev/mcp-page-finder-extractor",
   "displayName": "Page Finder and Extractor",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "MCP server for the Mamba Labs Page Finder and Extractor actor on Apify. Company domain in, the named page type located on that company's own website out, with the method that found it and a confidence for that method.",
   "type": "module",
   "bin": {
@@ -43,7 +43,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.31.0",
+    "@modelcontextprotocol/sdk": "^1.32.0",
     "zod": "3.25.76"
   },
   "devDependencies": {
