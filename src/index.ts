@@ -229,6 +229,7 @@ server.registerTool(
       openWorldHint: true,
     },
     inputSchema: {
+      max_charge_usd: z.number().min(0).optional().describe("Optional. The actor's own spend cap for this run, in USD. The run stops before a charge would take its total past this amount, writes one notice row saying so, and keeps every row already charged. Leave it empty for no cap of your own; the maximum cost per run set in Apify is honored either way."),
       domain: z.string().optional().describe("A single company domain, for example stripe.com. Protocol and path are stripped. Supply this or domains or companies."),
       domains: z.array(z.string()).optional().describe("Several company domains. Every one returns a row, including the ones where nothing is found."),
       companies: z.array(z.object({
