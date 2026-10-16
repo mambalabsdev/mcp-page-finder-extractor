@@ -1,10 +1,10 @@
 {
   "_provenance": {
-    "source": "GET https://api.apify.com/v2/actor-builds/Blw3MToaobA1Vqh2P",
+    "source": "GET https://api.apify.com/v2/actor-builds/hxrkc7AHYvuZXCjNK",
     "actorId": "TpurgcOZbVnknlaiC",
-    "buildNumber": "0.0.8",
-    "buildId": "Blw3MToaobA1Vqh2P",
-    "copiedAt": "2026-08-16",
+    "buildNumber": "0.0.17",
+    "buildId": "hxrkc7AHYvuZXCjNK",
+    "copiedAt": "2026-10-16",
     "note": "Copied verbatim from the live build record. Regenerate with scripts/sync-input-schema-fixture.mjs. Never hand edit, and never derive it from src/index.ts, which is the thing it exists to check."
   },
   "schema": {
@@ -238,7 +238,7 @@
       "allowRender": {
         "title": "Render JavaScript pages",
         "type": "string",
-        "description": "true opens a browser for pages that serve no readable HTML, which is most Nordic investor calendars. It is never used to get past a block, a CAPTCHA, a login or robots.txt: those come back refused, unretried. false skips rendering entirely and those pages report javascript_only.",
+        "description": "true opens a browser for pages that serve no readable HTML, which is most Nordic investor calendars. It is never used to get past a block, a CAPTCHA, a login or robots.txt: those come back refused, unretried. false skips rendering entirely and those pages report javascript_only. The form starts at false so a first run reads static HTML only; the API default stays true. If no browser can start, the run continues without one and every row says so in error_reason.",
         "editor": "select",
         "enum": [
           "true",
@@ -249,7 +249,7 @@
           "false, never open a browser"
         ],
         "default": "true",
-        "prefill": "true"
+        "prefill": "false"
       },
       "languageHints": {
         "title": "Language hints",
@@ -276,6 +276,13 @@
         ],
         "default": "false",
         "prefill": "false"
+      },
+      "max_charge_usd": {
+        "title": "Maximum charge for this run (USD)",
+        "type": "number",
+        "description": "Optional. The run starts no input whose worst case cost would take this run's total past this amount in USD, writes one notice row saying it stopped, and keeps every row already charged. Leave it empty for no cap of your own; the maximum cost per run set in Apify is honored either way.",
+        "editor": "number",
+        "minimum": 0
       },
       "source_tag": {
         "title": "Source Tag",

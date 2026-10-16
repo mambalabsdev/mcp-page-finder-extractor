@@ -50,6 +50,7 @@ Requires an Apify API token in `APIFY_TOKEN`. Create one at [console.apify.com/a
 | `maxRequestsPerInput` | no | 5 to 200, ceiling on requests per company. A number or a numeric string. Default `60` |
 | `allowRender` | no | Open a browser for pages that need JavaScript. Default `"true"` |
 | `languageHints` | no | Language codes to try first. Reorders vocabulary, never shortens it |
+| `max_charge_usd` | no | Spend cap for the run, in USD. The run starts no company whose worst case cost would cross it and writes one notice row. Empty means no cap of your own |
 | `concurrency` | no | How many companies to work on at once. Per company the actor still makes one request at a time with a delay. A number or a numeric string. Default `10` |
 | `skipCache` | no | `"true"` forces a fresh crawl instead of the 14 day cache |
 
