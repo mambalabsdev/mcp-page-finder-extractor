@@ -223,7 +223,7 @@ server.registerTool(
       "Give it a company domain and name a page type. It finds that page on the company's own website and returns the URL, the method that found it, and a confidence for THAT method. 46 page types are available: pricing, investor_relations, security_trust_center, careers, about, contact, terms_of_service, privacy_policy, partners, integrations, documentation, api_reference, status_page, changelog, press_newsroom, customers_logos, sustainability_esg and 29 more. Discovery reads the homepage and footer link graph, the sitemap and its shards, known third party hosts such as boards.greenhouse.io and statuspage.io, and anchor vocabulary in 11 European languages; guessing a URL path is the LAST method tried and is scored 0.6 or below. Read {type}_confidence and threshold at 0.8 for anything a customer will see, and read coverage and fetch_status before trusting a false: found=false means the site was read and the page is not there, found=null means not enough was readable to say, and the two are never collapsed. Set mode to locate_and_extract to also read the page and return structured fields, which costs an extra event per page. Every input returns exactly one row, including the empty ones. Use it when you need a specific page on a company's own site, such as pricing, careers, or investor relations; it does not crawl a whole site, read third party review or social sites, or monitor a page over time. Requires an APIFY_TOKEN and consumes Apify credits. Read only.",
     annotations: {
       title: "Find Company Page",
-      readOnlyHint: true,
+      readOnlyHint: false,
       destructiveHint: false,
       idempotentHint: true,
       openWorldHint: true,
