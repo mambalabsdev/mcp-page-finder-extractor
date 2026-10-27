@@ -74,6 +74,8 @@ In `locate_and_extract` mode the structured fields land in a second `findings` d
 
 Pay per event on Apify credits. Roughly, at the FREE tier: $0.004 per page type located, $0.003 per page extracted, $0.007 per company name resolved, and the standard actor start fee.
 
+Free until 2026-11-10: from 2026-10-26 the three work events are not charged and a run pays only the actor start fee. The prices above take effect again on 2026-11-10 at 05:01 UTC.
+
 A look that happens is billed, including the ones that come back empty, because the work is the same either way. A look that does not happen is not billed: a dead domain, a refusal, or a robots.txt disallow returns `found: null` and no locate charge.
 
 You are never charged for identity resolution unless you use the `companies` path.
